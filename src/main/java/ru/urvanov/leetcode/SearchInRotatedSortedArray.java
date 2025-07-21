@@ -23,34 +23,32 @@ public class SearchInRotatedSortedArray {
             boolean rightPartIsSorted = false;
             
             if (startNum <= num) {
-                // Левая часть отсортирована
                 leftPartIsSorted = true;
             }
             
             if (num <= endNum) {
-                // Правая часть отсортирована
                 rightPartIsSorted = true;
             }
             
             if ((leftPartIsSorted) && (rightPartIsSorted)) {
-                // Исходный массив не повёрнут. Запускаем обычный поиск
+                // Source array is not rotated. Start binary search.
                 return searchSorted(nums, start, end, target);
             }
-            // Проверяем, находится, ли искомое число в этой части, и
-            // запускаем поиск, если оно там.
+            
+            // Left part binary search if it is sorted and the number is inside.
             if ((leftPartIsSorted) && (target >= startNum)
                     && (target <= num)) {
                 return searchSorted(nums, start, end, target);
             }
             
+            // Right part binary search if it is sorted and the number is inside.
             if ((rightPartIsSorted) && (target >= num)
                     && (target <= endNum)) {
                 return searchSorted(nums, start, end, target);
             }
             
-            // В этом месте мы в любом случае уже проведём поиск в 
-            // той части, которая была отсортирована. Нам остаётся повторить
-            // поиск в части, которая не была отсортирована.
+            // We already searched in the sorted part..
+            // We need to search in the not sorted part.
             if (!leftPartIsSorted) {
                 end = position;
             } else if (!rightPartIsSorted) {
