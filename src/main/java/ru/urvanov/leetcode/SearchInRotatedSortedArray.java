@@ -41,7 +41,7 @@ public class SearchInRotatedSortedArray {
                 return searchSorted(nums, start, end, target);
             }
             
-            // Right part binary search if it is sorted and the number is inside.
+            // Right part binary search if it is sorted and the number is inside
             if ((rightPartIsSorted) && (target >= num)
                     && (target <= endNum)) {
                 return searchSorted(nums, start, end, target);
