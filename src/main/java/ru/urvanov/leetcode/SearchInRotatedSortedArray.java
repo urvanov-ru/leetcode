@@ -62,7 +62,15 @@ public class SearchInRotatedSortedArray {
         return NOT_FOUND;
     }
     
-    public int searchSorted(int[] nums, int start, int end, int target) {
+    /**
+     * Binary search in a sorted array.
+     * @param nums Sorted array of int.
+     * @param start Start index (inclusive) inside nums.
+     * @param end End index (exclusive) inside nums.
+     * @param target A value to search in nums between start and end.
+     * return -1 if not found index otherwise.
+     */
+    private int searchSorted(int[] nums, int start, int end, int target) {
         if (nums == null)
             throw new IllegalArgumentException("nums is null");
         if (end < start)
