@@ -1,5 +1,10 @@
 package ru.urvanov.leetcode;
 
+/**
+ * Solves search in 
+ * <a href = "https://leetcode.com/problems/search-in-rotated-sorted-array/">
+ * rotated sorted array</a> problem.
+ */
 public class SearchInRotatedSortedArray {
     
     public static final int NOT_FOUND = -1;
