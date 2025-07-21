@@ -65,11 +65,16 @@ public class SearchInRotatedSortedArray {
     }
     
     public int searchSorted(int[] nums, int start, int end, int target) {
-        if (nums == null) throw new IllegalArgumentException("nums is null");
-        if (end < start) throw new IllegalArgumentException("end cannot be less then start");
-        if (start >= nums.length) throw new IllegalArgumentException("start greater or equal then nums.length");
+        if (nums == null)
+            throw new IllegalArgumentException("nums is null");
+        if (end < start)
+            throw new IllegalArgumentException("end cannot be less then start");
+        if (start >= nums.length)
+            throw new IllegalArgumentException(
+                    "start greater or equal then nums.length");
         if (start < 0) throw new IllegalArgumentException("start is negative");
-        if (end > nums.length) throw new IllegalArgumentException("end greater then nums.length");
+        if (end > nums.length)
+            throw new IllegalArgumentException("end greater then nums.length");
         if (end < 0) throw new IllegalArgumentException("end is negative");
         
         if (start == end) return -1;
