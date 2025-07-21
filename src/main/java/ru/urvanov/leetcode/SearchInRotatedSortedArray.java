@@ -88,7 +88,7 @@ public class SearchInRotatedSortedArray {
             } else if (num < target) {
                 start = position + 1;
             } else {
-                // Нашли
+                // Found
                 end = start;
             }
             length = end - start;
