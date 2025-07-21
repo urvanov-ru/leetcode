@@ -17,7 +17,7 @@ public class BinarySearch {
             } else if (currentNum < target) {
                 currentStart = currentPosition+1;
             } else {
-                // Нашли
+                // English comments
                 currentEnd = currentStart;
             }
             currentLength = currentEnd - currentStart;
