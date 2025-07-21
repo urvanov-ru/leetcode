@@ -1,5 +1,10 @@
 package ru.urvanov.leetcode;
 
+/**
+ * Solves
+ * <a href = "https://leetcode.com/problems/binary-search/">
+ * Binary Search</a> problem.
+ */
 public class BinarySearch {
 
     public int search(int[] nums, int target) {
