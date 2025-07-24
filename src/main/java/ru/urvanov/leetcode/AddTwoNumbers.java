@@ -1,7 +1,5 @@
 package ru.urvanov.leetcode;
 
-import java.math.BigInteger;
-
 /**
  * Solves 
  * <a href = "https://leetcode.com/problems/add-two-numbers/">
@@ -20,46 +18,38 @@ public class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode currentNode1 = l1;
         ListNode currentNode2 = l2;
-        BigInteger value1 = BigInteger.ZERO;
-        BigInteger value2 = BigInteger.ZERO;
-        
-        value1 = listNodeToBigInteger(currentNode1);
-        value2 = listNodeToBigInteger(currentNode2);
-        
-        BigInteger result = value1.add(value2);
-        
-        return bigIntegerToListNode(result);
-    }
-
-    private BigInteger listNodeToBigInteger(ListNode listNode) {
-        StringBuilder resultBuilder = new StringBuilder();
-        for (ListNode currentNode = listNode; currentNode != null; 
-                currentNode = currentNode.next) {
-            resultBuilder.insert(0, currentNode.val);
-        }
-        return new BigInteger(resultBuilder.toString());
-    }
-
-    private ListNode bigIntegerToListNode(BigInteger bigInteger) {
-        if (bigInteger == null) throw new IllegalStateException(
-                "Parameter must not be null");
-        if (bigInteger.compareTo(BigInteger.TEN) < 0) {
-            return new ListNode(bigInteger.intValue());
+        int buf = 0;
+        ListNode result = new ListNode(-1);
+        ListNode currentResultNode = result;
+        while ((currentNode1 != null) && (currentNode2 != null)) {
+            int sum = currentNode1.val + currentNode2.val + buf;
+            buf = sum / 10;
+            currentResultNode = currentResultNode.next = new ListNode(sum % 10);
+            currentNode1 = currentNode1.next;
+            currentNode2 = currentNode2.next;
         }
         
-        BigInteger[] divideAndRemainder = bigInteger.divideAndRemainder(
-                BigInteger.TEN);
+        ListNode currentNode;
+        if (currentNode1 != null) {
+            currentNode = currentNode1;
+        } else if (currentNode2 != null) {
+            currentNode = currentNode2;
+        } else {
+            currentNode = null;
+        }
         
-        ListNode result = new ListNode(divideAndRemainder[1].intValue()),
-                currentNode = result;
-        BigInteger current = divideAndRemainder[0];
-        while (current.compareTo(BigInteger.ZERO) > 0) {
-            divideAndRemainder = current.divideAndRemainder(BigInteger.TEN);
-            currentNode.next = new ListNode(
-                    divideAndRemainder[1].intValue());
+        // Iterate through the longest ListNode
+        while (currentNode != null) {
+            int sum = currentNode.val + buf;
+            currentResultNode = currentResultNode.next = new ListNode(sum % 10);
+            buf = sum / 10;
             currentNode = currentNode.next;
-            current = divideAndRemainder[0];
         }
-        return result;
+        
+        if (buf > 0) {
+            currentResultNode = currentResultNode.next = new ListNode(buf);
+        }
+        return result.next;
     }
+
 }
